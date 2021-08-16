@@ -16,7 +16,7 @@ def lambda_handler(event, context):
         response = ec2.describe_snapshots(OwnerIds=[account_id])
         snapshots = response["Snapshots"]
 
-        # Sort snapshots by date ascending
+        # Sort snapshots by most recent
         snapshots.sort(key=lambda x: x["StartTime"])
 
         # Remove snapshots other than we want to keep (i.e. 5 most recent snapshots will remain)
